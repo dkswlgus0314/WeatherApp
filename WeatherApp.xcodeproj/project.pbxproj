@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F72781D2C4573DB0033B94E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5F72781C2C4573DB0033B94E /* SnapKit */; };
 		5F8846BB2C444DCF00F5E8FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8846BA2C444DCF00F5E8FA /* AppDelegate.swift */; };
 		5F8846BD2C444DCF00F5E8FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8846BC2C444DCF00F5E8FA /* SceneDelegate.swift */; };
 		5F8846BF2C444DCF00F5E8FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8846BE2C444DCF00F5E8FA /* ViewController.swift */; };
-		5F8846C22C444DCF00F5E8FA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5F8846C12C444DCF00F5E8FA /* Base */; };
 		5F8846C52C444DCF00F5E8FA /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F8846C32C444DCF00F5E8FA /* WeatherApp.xcdatamodeld */; };
 		5F8846C72C444DD000F5E8FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F8846C62C444DD000F5E8FA /* Assets.xcassets */; };
+		5F8846D22C44522E00F5E8FA /* CurrentWeatherResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8846D12C44522E00F5E8FA /* CurrentWeatherResult.swift */; };
+		5F8846D42C44524800F5E8FA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8846D32C44524800F5E8FA /* TableViewCell.swift */; };
+		5F8846D62C44525E00F5E8FA /* ForecastWeatherResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8846D52C44525E00F5E8FA /* ForecastWeatherResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +23,12 @@
 		5F8846BA2C444DCF00F5E8FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F8846BC2C444DCF00F5E8FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5F8846BE2C444DCF00F5E8FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5F8846C12C444DCF00F5E8FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5F8846C42C444DCF00F5E8FA /* WeatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApp.xcdatamodel; sourceTree = "<group>"; };
 		5F8846C62C444DD000F5E8FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F8846CB2C444DD000F5E8FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F8846D12C44522E00F5E8FA /* CurrentWeatherResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherResult.swift; sourceTree = "<group>"; };
+		5F8846D32C44524800F5E8FA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		5F8846D52C44525E00F5E8FA /* ForecastWeatherResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F72781D2C4573DB0033B94E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,10 +65,12 @@
 				5F8846BA2C444DCF00F5E8FA /* AppDelegate.swift */,
 				5F8846BC2C444DCF00F5E8FA /* SceneDelegate.swift */,
 				5F8846BE2C444DCF00F5E8FA /* ViewController.swift */,
-				5F8846C02C444DCF00F5E8FA /* Main.storyboard */,
 				5F8846C62C444DD000F5E8FA /* Assets.xcassets */,
 				5F8846CB2C444DD000F5E8FA /* Info.plist */,
 				5F8846C32C444DCF00F5E8FA /* WeatherApp.xcdatamodeld */,
+				5F8846D12C44522E00F5E8FA /* CurrentWeatherResult.swift */,
+				5F8846D32C44524800F5E8FA /* TableViewCell.swift */,
+				5F8846D52C44525E00F5E8FA /* ForecastWeatherResult.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -83,6 +91,9 @@
 			dependencies = (
 			);
 			name = WeatherApp;
+			packageProductDependencies = (
+				5F72781C2C4573DB0033B94E /* SnapKit */,
+			);
 			productName = WeatherApp;
 			productReference = 5F8846B72C444DCF00F5E8FA /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 5F8846AE2C444DCF00F5E8FA;
+			packageReferences = (
+				5F72781B2C4573DB0033B94E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 5F8846B82C444DCF00F5E8FA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,7 +140,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F8846C72C444DD000F5E8FA /* Assets.xcassets in Resources */,
-				5F8846C22C444DCF00F5E8FA /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,25 +150,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F8846D22C44522E00F5E8FA /* CurrentWeatherResult.swift in Sources */,
 				5F8846C52C444DCF00F5E8FA /* WeatherApp.xcdatamodeld in Sources */,
+				5F8846D62C44525E00F5E8FA /* ForecastWeatherResult.swift in Sources */,
 				5F8846BF2C444DCF00F5E8FA /* ViewController.swift in Sources */,
+				5F8846D42C44524800F5E8FA /* TableViewCell.swift in Sources */,
 				5F8846BB2C444DCF00F5E8FA /* AppDelegate.swift in Sources */,
 				5F8846BD2C444DCF00F5E8FA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		5F8846C02C444DCF00F5E8FA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5F8846C12C444DCF00F5E8FA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5F8846CC2C444DD000F5E8FA /* Debug */ = {
@@ -351,6 +356,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5F72781B2C4573DB0033B94E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5F72781C2C4573DB0033B94E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5F72781B2C4573DB0033B94E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5F8846C32C444DCF00F5E8FA /* WeatherApp.xcdatamodeld */ = {
