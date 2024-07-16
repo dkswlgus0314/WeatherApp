@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
+    // 테이블 뷰에 넣을 데이터 소스.
+    private var dataSource = [ForecastWeather]()
     
     // URL 쿼리에 넣을 아이템들
     // 서울역 위경도
@@ -57,12 +59,23 @@ class ViewController: UIViewController {
         imageView.backgroundColor = .black
         return imageView
     }()
-    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .black
+        // delegate: "대리자. 대신 수행해주는 사람." tableView 의 여러가지 속성 세팅을 이 ViewController 에서 대신 세팅해주겠다.
+        tableView.delegate = self
+        // dataSource: 테이블 뷰에 넣을 데이터를 이 ViewController 에서 세팅해주겠다.
+        tableView.dataSource = self
+        // 테이블 뷰에 테이블 뷰 셀 등록.
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.id)
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         fetchCurrentWeatherData()
+        fetchForecastData()
     }
     
     
@@ -126,6 +139,33 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    // 서버에서 5일 간 날씨 예보 데이터를 불러오는 메서드
+    private func fetchForecastData() {
+        var urlComponents = URLComponents(string: "https://api.openweathermap.org/data/2.5/forecast")
+        urlComponents?.queryItems = self.urlQueryItems
+        
+        guard let url = urlComponents?.url else {
+            print("잘못된 URL")
+            return
+        }
+        
+        fetchData(url: url) { [weak self] (result: ForecastWeatherResult?) in
+            guard let self, let result else { return }
+            
+            // result 콘솔에 찍어보기
+            for forecastWeather in result.list {
+                print("\(forecastWeather.main)\n\(forecastWeather.dtTxt)\n\n")
+            }
+            
+            // UI 작업은 메인 쓰레드에서
+            DispatchQueue.main.async {
+                self.dataSource = result.list
+                self.tableView.reloadData()  //데이터를 넣었으면 반드시 reloadData해야한다.
+            }
+        }
+    }
+    
     private func configureUI(){
         view.backgroundColor = .black
         
@@ -133,7 +173,8 @@ class ViewController: UIViewController {
             titleLabel,
             tempLabel,
             tempStackView,
-            imageView
+            imageView,
+            tableView
         ].forEach{view.addSubview($0)}
         
         [
@@ -162,11 +203,32 @@ class ViewController: UIViewController {
             $0.top.equalTo(tempStackView.snp.bottom).offset(20)
         }
         
-        //        tableView.snp.makeConstraints {
-        //            $0.top.equalTo(imageView.snp.bottom).offset(30)
-        //            $0.leading.trailing.equalToSuperview().inset(20)
-        //            $0.bottom.equalToSuperview().inset(50)
-        //        }
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(imageView.snp.bottom).offset(30)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(50)
+        }
     }
     
+}
+
+extension ViewController: UITableViewDelegate {
+    // 테이블 뷰 셀의 높이 크기 지정.
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        40
+    }
+}
+
+extension ViewController: UITableViewDataSource {
+    // 테이블 뷰의 indexPath 마다 테이블 셀 지정.
+    // indexPath = 테이블 뷰의 행과 섹션을 지정. 여기서 섹션은 사용하지 않고 행만 사용함.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.id) as? TableViewCell else { return UITableViewCell() }
+        cell.configureCell(forecastWeather: dataSource[indexPath.row])
+        return cell
+    }
+    // 테이블 뷰 섹션에 행이 몇 개 들어가는가. 여기서 섹션은 없으니 그냥 총 행 개수를 입력하면 된다.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        dataSource.count
+    }
 }
